@@ -69,7 +69,7 @@ const run = async () => {
         })
 
         /*----------------------------------------------------------------*/
-        // UPDATE METHOD
+        // UPDATE METHOD-
         /*----------------------------------------------------------------*/
         app.put("/users/:id", async (req, res) => {
             const id = req.params.id;

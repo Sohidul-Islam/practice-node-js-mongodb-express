@@ -67,6 +67,26 @@ const run = async () => {
             const result = await userCollection.deleteOne(query);
             res.send(result);
         })
+
+        /*----------------------------------------------------------------*/
+        // UPDATE METHOD
+        /*----------------------------------------------------------------*/
+        app.put("/users/:id", async (req, res) => {
+            const id = req.params.id;
+            const user = req.body;
+            console.log("in app.put updated id: ", id);
+            const query = { _id: ObjectId(id) };
+            console.log("user in app.put ", user);
+            const updateDocs = {
+                $set: {
+                    name: user.name,
+                    email: user.email
+                }
+            };
+            const options = { upsert: true }
+            const result = await userCollection.updateOne(query, updateDocs, options);
+            res.json(result);
+        })
     } finally {
         // await client.close();
     }
